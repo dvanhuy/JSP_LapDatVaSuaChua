@@ -15,38 +15,45 @@
 </head>
 <body>
     <jsp:include page="__header.jsp"></jsp:include>
-    <div class="banner">
-        <img src="${pageContext.request.contextPath}/image/banner.png" alt="banner">
-    </div>
     <main>
         <div class="header_main">
-            <div class="header_name_title">
-                <i class="fa-solid fa-house"></i>
-                <span>Cập nhật TTLD</span> 
-            </div>
+            <a href="${pageContext.request.contextPath}/listservice">
+                <div class="header_name_title">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Cập nhật TTLD</span> 
+                </div>
+            </a>
             <div class="header_name_search">
-                <label for="order">Sắp xếp theo : </label>
-                <select name="order" id="order">
-                    <option value="">Giá tăng dần</option>
-                    <option value="">Giá giảm dần</option>
-                    <option value="">Mới cập nhật</option>
-                    <option value="">Cũ nhất</option>
-                </select>
-                <label for="search" id="search_input_lable">Tìm kiếm </label>
-                <input type="text" name="" id="search_input" placeholder="Thiết bị cần tìm kiếm">
-                <button id="button_search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <form action="${pageContext.request.contextPath}/listservice" method="get">
+                    <label for="order">Sắp xếp theo : </label>
+                    <select name="order" id="order" >
+                        <option value="desc" selected="selected">Mới cập nhật</option>
+                        <option value="asc">Cũ nhất</option>
+                    </select>
+                    <label for="search" id="search_input_lable">Tìm kiếm </label>
+                    <input type="text" name="keysearch" id="search_input" placeholder="Thiết bị cần tìm kiếm">
+                    <input type="submit" value="Tìm" id="button_search">
+                <form/>
             </div>
         </div>
         <div class="container_main">
             <%
                 DecimalFormat df = new DecimalFormat("###,###,###");
+                String order = request.getParameter("order");
+                String keysearch = request.getParameter("keysearch");
+                if(order==null){
+                    order = "desc";
+                }
+                if(keysearch==null){
+                    keysearch = "";
+                }
                 int pagenumber = 1;
                 if (request.getParameter("pagenb")!=null){
                     pagenumber = Integer.parseInt(request.getParameter("pagenb")); 
                 };
                 List<ThongTinLapDat> listttld = null;
                 try {
-                    listttld = DBUtils.get24ServiceByPage(pagenumber);
+                    listttld = DBUtils.get24ServiceByPage(pagenumber,order,keysearch);
                 } catch (Exception e) {
                     System.out.println("Lõi tại lấy danh sách");
                 }
@@ -67,21 +74,21 @@
         <div class="footer_main">
             <div class="pagination">
                 <%
-                    out.print("<a href='"+request.getContextPath()+"/listservice?pagenb=1'>&laquo;</a>");
-                    int lenghtpage = DBUtils.getLengthService();
+                    out.print("<a href='"+request.getContextPath()+"/listservice?order="+order+"&keysearch="+keysearch+"&pagenb=1'>&laquo;</a>");
+                    int lenghtpage = DBUtils.getLengthService(order,keysearch);
                     int forloopnb = lenghtpage/24;
                     if (lenghtpage%24>0){
                         forloopnb+=1;
                     }
                     for (int i = 0; i < forloopnb; i++) {
                         if (pagenumber==(i+1)){
-                            out.print("<a class='active' href='"+request.getContextPath()+"/listservice?pagenb="+(i+1)+"'>"+(i+1)+"</a>");
+                            out.print("<a class='active' href='"+request.getContextPath()+"/listservice?order="+order+"&keysearch="+keysearch+"&pagenb="+(i+1)+"'>"+(i+1)+"</a>");
                         }
                         else{
-                            out.print("<a href='"+request.getContextPath()+"/listservice?pagenb="+(i+1)+"'>"+(i+1)+"</a>");
+                            out.print("<a href='"+request.getContextPath()+"/listservice?order="+order+"&keysearch="+keysearch+"&pagenb="+(i+1)+"'>"+(i+1)+"</a>");
                         }
                     }
-                    out.print("<a href='"+request.getContextPath()+"/listservice?pagenb="+forloopnb+"'>&raquo;</a>");
+                    out.print("<a href='"+request.getContextPath()+"/listservice?order="+order+"&keysearch="+keysearch+"&pagenb="+forloopnb+"'>&raquo;</a>");
                 %>
               </div>
         </div>
@@ -155,9 +162,11 @@
     padding: 20px;
 }
 .header_name_search select{
+    box-sizing: content-box;
     margin-left: 10px;
     font-size: 0.95rem;
     padding: 5px;
+    text-align: center;
 }
 
 #search_input_lable{
@@ -170,10 +179,8 @@
     padding: 5px;
 }
 #button_search{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-left: 10px;
+    padding: 5px 10px;
+    margin-left: 20px;
     border: 1px solid black;
 }
 #button_search:hover{
@@ -256,6 +263,10 @@
 .container_main_item .item_subprice{
     color: rgb(96, 96, 96);
     font-size: 0.8rem;
+}
+a{
+    text-decoration: none;
+    color: black;
 }
 
 </style>

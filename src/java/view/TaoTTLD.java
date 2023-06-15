@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.LichSuaChua;
+import model.ThongTinLapDat;
 
 /**
  *
@@ -29,20 +30,22 @@ public class TaoTTLD extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LichSuaChua newlich = new LichSuaChua();
-        newlich.setHoTen(req.getParameter("hovaten"));
-        newlich.setSoDienThoai(req.getParameter("sodienthoai"));
-        newlich.setThoiGianDatTruoc(req.getParameter("thoigianlapdat"));
-        newlich.setDiaChi(req.getParameter("diachicuthe"));
-        newlich.setTenThietBi(req.getParameter("thietbi"));
-        newlich.setMoTaTinhTrang(req.getParameter("tinhtrang"));
-        try {
-            DBUtils.insertLichSuaChua(newlich, "TK00001");
-            resp.sendRedirect(req.getContextPath() + "/listschedule");
-        } catch (Exception ex) {
-            req.setAttribute("error","Đã xảy ra lỗi "+ex+". Vui lòng thử lại");
+        ThongTinLapDat newttld = new ThongTinLapDat();
+        if (req.getParameter("tenthietbi").equals("") || req.getParameter("gialapdat").equals("") || req.getParameter("motacongviec").equals("")){
+            req.setAttribute("error","Nhập đầy đủ thông tin");
             doGet(req,resp);
         }
-        
+        else {
+            newttld.setIdThietBi(req.getParameter("tenthietbi"));
+            newttld.setGiaLapDat(Float.parseFloat(req.getParameter("gialapdat")));
+            newttld.setMoTaCongViec(req.getParameter("motacongviec"));
+            try {
+                DBUtils.insertTTLD(newttld);
+                resp.sendRedirect(req.getContextPath() + "/listservice");
+            } catch (Exception ex) {
+                req.setAttribute("error","Đã xảy ra lỗi "+ex+". Vui lòng thử lại");
+                doGet(req,resp);
+            }
+        }
     }
 }

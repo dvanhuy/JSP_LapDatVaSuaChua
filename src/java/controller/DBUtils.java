@@ -105,24 +105,14 @@ public class DBUtils {
         stmt.execute(sql);
     }
     
-    public static int getLengthService() throws SQLException{
-        Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
-        String sql = "select count(idTTLapDat) " +
-                        " from ThongTinLapDat";
-        PreparedStatement pstm = conn.prepareStatement(sql);
-        ResultSet rs = pstm.executeQuery();
-        rs.next();
-        return rs.getInt(1);
-    }
-    
-    public static List<ThongTinLapDat> get24ServiceByPage(int page) throws SQLException{
+    public static List<ThongTinLapDat> get24ServiceByPage(int page,String order,String search) throws SQLException{
         Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
         int dongdautien = (page-1)*24;
         String sql = "SELECT * FROM ThongTinLapDat as T " +
                     "	left join ThietBi " +
                     "		on T.idThietBi=ThietBi.idThietBi " +
-                    "where tinhTrang=1 " +
-                    "ORDER BY idTTLapDat OFFSET "+dongdautien+" ROWS FETCH NEXT 24 ROWS ONLY";
+                    "where tinhTrang=1 and tenthietbi like N'%"+search+"%' " +
+                    "ORDER BY idTTLapDat "+order+" OFFSET "+dongdautien+" ROWS FETCH NEXT 24 ROWS ONLY";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
         List<ThongTinLapDat> listresult = new ArrayList<>();
@@ -140,6 +130,28 @@ public class DBUtils {
             listresult.add(ttld);
         }
         return listresult;
+    }
+    
+    public static int getLengthService(String order,String search) throws SQLException{
+        Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
+        String sql = "SELECT count(idTTLapDat) FROM ThongTinLapDat as T " +
+                    "	left join ThietBi " +
+                    "		on T.idThietBi=ThietBi.idThietBi " +
+                    "where tinhTrang=1 and tenthietbi like N'%"+search+"%' ";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+    
+    public static int getLengthService() throws SQLException{
+        Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
+        String sql = "select count(idTTLapDat) " +
+                        " from ThongTinLapDat";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        rs.next();
+        return rs.getInt(1);
     }
     
     public static ThongTinLapDat getTTLDById(String id) throws SQLException{
@@ -187,38 +199,30 @@ public class DBUtils {
     public static void insertTTLD(ThongTinLapDat newTTLD) throws SQLException {
        Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
        String sql = "Insert into ThongTinLapDat "
-               + "values (dbo.fn_autoIdTTLD(),'"+newTTLD.getIdThietBi()+"',"
+               + "values (dbo.fn_autoIdTTLD(),'"+newTTLD.getIdThietBi()+"'"
                + ","+newTTLD.getGiaLapDat()+",N'"+newTTLD.getMoTaCongViec()+"')";
        Statement stmt = conn.createStatement();
+        System.out.println(sql);
        stmt.execute(sql);
    }
     
-    public static List<LichSuaChua> getAllThietBi() throws SQLException{
+    public static List<ThietBi> getAllThietBi() throws SQLException{
         Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
-        String sql = "select *\n" +
-                    "from LichSuaChua \n" +
-                    "where trangThai in (-1,0)";
+        String sql = "select * " +
+                    "from ThietBi ";
         
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
-        List<LichSuaChua> listresult = new ArrayList<>();
+        List<ThietBi> listresult = new ArrayList<>();
         while (rs.next()) {
-            LichSuaChua lichsc = new LichSuaChua();
-            lichsc.setMaLichSuaChua(rs.getString("maLichSuaChua"));
-            lichsc.setMaKhachHang(rs.getString("maKhachHang"));
-            lichsc.setMaNhanVien(rs.getString("maNhanVien"));
-            lichsc.setHoTen(rs.getString("hoTen"));
-            lichsc.setSoDienThoai(rs.getString("soDienThoai"));
-            lichsc.setDiaChi(rs.getString("diaChi"));
-            lichsc.setTenThietBi(rs.getString("tenThietBi"));
-            lichsc.setHinhAnhThietBi(rs.getString("hinhAnhThietBi"));
-            lichsc.setMoTaTinhTrang(rs.getString("moTaTinhTrang"));
-            lichsc.setThoiGianTaoLich(rs.getString("thoiGianTaoLich"));
-            lichsc.setThoiGianDatTruoc(rs.getString("thoiGianDatTruoc"));
-            lichsc.setThoiGianDuyet(rs.getString("thoiGianDuyet"));
-            lichsc.setThoiGianHoanThanh(rs.getString("thoiGianHoanThanh"));
-            lichsc.setTrangThai(rs.getInt("trangThai"));
-            listresult.add(lichsc);
+            ThietBi thietbi = new ThietBi();
+            thietbi.setIdThietBi(rs.getString("idThietBi"));
+            thietbi.setTenThietBi(rs.getString("tenThietBi"));
+            thietbi.setSoLuong(rs.getInt("soLuong"));
+            thietbi.setTinhTrang(rs.getInt("tinhTrang"));
+            thietbi.setHinhAnh(rs.getString("hinhAnh"));
+            thietbi.setGiaThietBi(rs.getFloat("giaThietBi"));
+            listresult.add(thietbi);
         }
         return listresult;
     }

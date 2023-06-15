@@ -13,14 +13,14 @@ public class ThietBi {
     private String idThietBi;
     private String tenThietBi;
     private int soLuong;
-    private String tinhTrang;
+    private int tinhTrang;
     private String hinhAnh;
     private float giaThietBi;
 
     public ThietBi() {
     }
 
-    public ThietBi(String idThietBi, String tenThietBi, int soLuong, String tinhTrang, String hinhAnh, float giaThietBi) {
+    public ThietBi(String idThietBi, String tenThietBi, int soLuong, int tinhTrang, String hinhAnh, float giaThietBi) {
         this.idThietBi = idThietBi;
         this.tenThietBi = tenThietBi;
         this.soLuong = soLuong;
@@ -53,11 +53,11 @@ public class ThietBi {
         this.soLuong = soLuong;
     }
 
-    public String getTinhTrang() {
+    public int getTinhTrang() {
         return tinhTrang;
     }
 
-    public void setTinhTrang(String tinhTrang) {
+    public void setTinhTrang(int tinhTrang) {
         this.tinhTrang = tinhTrang;
     }
 

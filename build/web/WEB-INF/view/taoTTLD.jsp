@@ -4,6 +4,9 @@
     Author     : ADMIN
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="controller.DBUtils"%>
+<%@page import="model.ThietBi"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +24,7 @@
         DecimalFormat df = new DecimalFormat("###,###,###");
     %>
     <jsp:include page="__header.jsp"></jsp:include>
-    <form action="${pageContext.request.contextPath}/updateservice?idttld=${ttld.getIdTTLapDat()}" method="post">
+    <form action="${pageContext.request.contextPath}/addservice" method="post">
         <main>
             <div class="header_main">
                 <div class="header_name_title">
@@ -39,11 +42,17 @@
                         <label for="tenthietbi">Thiết bị</label>
                         <input type="text" list="browsers" name="tenthietbi" id="tenthietbi">
                         <datalist id="browsers">
-                          <option value="1">Edge<option/>
-                          <option value="Firefox">
-                          <option value="Chrome">
-                          <option value="Opera">
-                          <option value="Safari">
+                            <%
+                                List<ThietBi> listthietbi = null;
+                                try {
+                                    listthietbi = DBUtils.getAllThietBi();
+                                } catch (Exception e) {
+                                    System.out.println("Lõi tại lấy danh sách");
+                                }
+                                for (ThietBi thietBi : listthietbi) {
+                                    out.print("<option value='"+thietBi.getIdThietBi()+"'>"+thietBi.getTenThietBi()+"<option/>");
+                                }
+                            %>
                         </datalist>
                     </div>
                     <div class="more_info_box">

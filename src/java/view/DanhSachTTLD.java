@@ -25,4 +25,5 @@ public class DanhSachTTLD extends HttpServlet{
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/danhsachTTLD.jsp");
         dispatcher.forward(req, resp);
     }
+
 }
