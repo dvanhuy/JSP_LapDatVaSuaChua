@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="model.ThongTinLapDat"%>
+<%@page import="controller.DBUtils"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +22,7 @@
         <div class="header_main">
             <div class="header_name_title">
                 <i class="fa-solid fa-house"></i>
-                <span>Trang chủ</span> 
+                <span>Cập nhật TTLD</span> 
             </div>
             <div class="header_name_search">
                 <label for="order">Sắp xếp theo : </label>
@@ -35,359 +38,62 @@
             </div>
         </div>
         <div class="container_main">
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://cdn.tgdd.vn/Files/2022/09/26/1472172/phan-biet-ram-laptop-va-ram-pc-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    RAM Laptop Samsung 8GB DDR4 Bus 3200 - Hàng Nhập Khẩu
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
-            <div class="container_main_item">
-                <div class="item_image">
-                    <img src="https://hoanghapc.vn/media/news/0412_ram-la-gi-1.jpg" alt="">
-                </div>
-                <div class="item_name">
-                    Ram máy tính
-                </div>
-                <div class="item_price">
-                    1.000.000 VNĐ
-                </div>
-                <div class="item_subprice">
-                    Giá lắp đặt: 50.000 VNĐ
-                </div>
-            </div>
+            <%
+                DecimalFormat df = new DecimalFormat("###,###,###");
+                int pagenumber = 1;
+                if (request.getParameter("pagenb")!=null){
+                    pagenumber = Integer.parseInt(request.getParameter("pagenb")); 
+                };
+                List<ThongTinLapDat> listttld = null;
+                try {
+                    listttld = DBUtils.get24ServiceByPage(pagenumber);
+                } catch (Exception e) {
+                    System.out.println("Lõi tại lấy danh sách");
+                }
+                for (ThongTinLapDat ttld : listttld) {
+                    String itemttld = ""
+                    + "<a class='container_main_item' href="+request.getContextPath()+"/updateservice?idttld="+ttld.getIdTTLapDat()+">"
+                            + "<div class='item_image'>"
+                                + "<img src='"+request.getContextPath()+"/image/"+ttld.getThietBi().getHinhAnh()+"' >"
+                            + "</div>"
+                            + "<div class='item_name'>"+ttld.getThietBi().getTenThietBi()+"</div>"
+                            + "<div class='item_price'>"+df.format(Double.valueOf(ttld.getThietBi().getGiaThietBi()))+"</div>"
+                            + "<div class='item_subprice'>Giá lắp đặt: "+df.format(Double.valueOf(ttld.getGiaLapDat()))+" VNĐ</div>"
+                    + "</a>";
+                    out.println(itemttld);
+                }
+            %>
         </div>
         <div class="footer_main">
             <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+                <%
+                    out.print("<a href='"+request.getContextPath()+"/listservice?pagenb=1'>&laquo;</a>");
+                    int lenghtpage = DBUtils.getLengthService();
+                    int forloopnb = lenghtpage/24;
+                    if (lenghtpage%24>0){
+                        forloopnb+=1;
+                    }
+                    for (int i = 0; i < forloopnb; i++) {
+                        if (pagenumber==(i+1)){
+                            out.print("<a class='active' href='"+request.getContextPath()+"/listservice?pagenb="+(i+1)+"'>"+(i+1)+"</a>");
+                        }
+                        else{
+                            out.print("<a href='"+request.getContextPath()+"/listservice?pagenb="+(i+1)+"'>"+(i+1)+"</a>");
+                        }
+                    }
+                    out.print("<a href='"+request.getContextPath()+"/listservice?pagenb="+forloopnb+"'>&raquo;</a>");
+                %>
               </div>
         </div>
     </main>
     <jsp:include page="__footer.jsp"></jsp:include>
 </body>
 <style>
+    a{
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+    }
     main{
     position: relative;
 }
@@ -395,7 +101,7 @@
     position: relative;
     margin-top: 30px;
     margin-left: 50px;
-    width: 150px;
+    padding-right: 15px;
     background-color: #86f1ff;
     margin-bottom: 20px;
     display: inline-block;

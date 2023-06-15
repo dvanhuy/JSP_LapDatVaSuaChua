@@ -27,7 +27,6 @@ public class CapNhatLichSuaChua extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idLich = req.getParameter("idLich");
-        Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
         LichSuaChua lichsc = null;
         try {
             lichsc = DBUtils.getLichSCById(idLich);
@@ -80,7 +79,7 @@ public class CapNhatLichSuaChua extends HttpServlet{
         //xóa
         if (action.length()==8){
             try {
-                DBUtils.deleteProduct(idLich);
+                DBUtils.deleteLichSuaChua(idLich);
                 resp.sendRedirect(req.getContextPath() + "/listschedule");
             } catch (SQLException ex) {
                 req.setAttribute("error","Đã xảy ra lỗi "+ex+". Vui lòng thử lại");

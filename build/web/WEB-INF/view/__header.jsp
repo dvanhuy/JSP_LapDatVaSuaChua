@@ -23,6 +23,7 @@
             <a href="${pageContext.request.contextPath}/listschedule"><li>Cập nhật lịch</li></a>
             <a href="${pageContext.request.contextPath}/addschedule"><li>Tạo lịch</li></a>
             <a href="${pageContext.request.contextPath}/listservice"><li>Cập nhật thông tin lắp đặt</li></a>
+            <a href="${pageContext.request.contextPath}/addservice"><li>Tạo mới thông tin lắp đặt</li></a>
             <a href=""><li>Đăng xuất</li></a>
         </ul>
     </div>

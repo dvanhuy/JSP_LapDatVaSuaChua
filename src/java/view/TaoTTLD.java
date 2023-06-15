@@ -19,9 +19,8 @@ import model.LichSuaChua;
  *
  * @author ADMIN
  */
-@WebServlet(urlPatterns = {"/addschedule"})
-public class TaoLichSuaChua extends HttpServlet{
-
+@WebServlet(urlPatterns = {"/addservice"})
+public class TaoTTLD extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/taoTTLD.jsp");
@@ -46,5 +45,4 @@ public class TaoLichSuaChua extends HttpServlet{
         }
         
     }
-    
 }

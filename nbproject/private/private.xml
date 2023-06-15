@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Java/WebLapDatSuaChua/web/WEB-INF/view/capNhatLichSuaChua.jsp</file>
-            <file>file:/E:/Java/WebLapDatSuaChua/src/java/view/CapNhatLichSuaChua.java</file>
+            <file>file:/E:/Java/WebLapDatSuaChua/src/java/view/DanhSachTTLD.java</file>
+            <file>file:/E:/Java/WebLapDatSuaChua/src/java/controller/DBUtils.java</file>
+            <file>file:/E:/Java/WebLapDatSuaChua/src/java/view/CapNhatTTLD.java</file>
+            <file>file:/E:/Java/WebLapDatSuaChua/web/WEB-INF/view/capNhatTTLD.jsp</file>
         </group>
     </open-files>
 </project-private>

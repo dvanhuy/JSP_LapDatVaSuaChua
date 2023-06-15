@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DanhSachTTLD extends HttpServlet{
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {      
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/danhsachTTLD.jsp");
         dispatcher.forward(req, resp);
     }

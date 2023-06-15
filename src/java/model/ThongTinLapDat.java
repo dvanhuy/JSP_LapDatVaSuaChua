@@ -14,15 +14,17 @@ public class ThongTinLapDat {
     private String idThietBi;
     private float giaLapDat;
     private String moTaCongViec;
+    private ThietBi thietBi;
 
     public ThongTinLapDat() {
     }
 
-    public ThongTinLapDat(String idTTLapDat, String idThietBi, float giaLapDat, String moTaCongViec) {
+    public ThongTinLapDat(String idTTLapDat, String idThietBi, float giaLapDat, String moTaCongViec, ThietBi thietBi) {
         this.idTTLapDat = idTTLapDat;
         this.idThietBi = idThietBi;
         this.giaLapDat = giaLapDat;
         this.moTaCongViec = moTaCongViec;
+        this.thietBi = thietBi;
     }
 
     public String getIdTTLapDat() {
@@ -56,6 +58,15 @@ public class ThongTinLapDat {
     public void setMoTaCongViec(String moTaCongViec) {
         this.moTaCongViec = moTaCongViec;
     }
+
+    public ThietBi getThietBi() {
+        return thietBi;
+    }
+
+    public void setThietBi(ThietBi thietBi) {
+        this.thietBi = thietBi;
+    }
+
     
     
 }
