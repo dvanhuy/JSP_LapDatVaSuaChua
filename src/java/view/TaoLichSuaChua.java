@@ -30,6 +30,7 @@ public class TaoLichSuaChua extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         LichSuaChua newlich = new LichSuaChua();
         if (req.getParameter("hovaten").equals("") || req.getParameter("sodienthoai").equals("") || req.getParameter("thoigianlapdat").equals("")
                 || req.getParameter("diachicuthe").equals("") || req.getParameter("thietbi").equals("") ||req.getParameter("tinhtrang").equals("")){

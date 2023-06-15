@@ -226,4 +226,23 @@ public class DBUtils {
         }
         return listresult;
     }
+    
+    public static ThietBi getThietBiByid(String id) throws SQLException{
+        Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
+        String sql = "select * " +
+                    "from ThietBi "
+                + "where idThietBi = '"+id+"'";
+        
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+        ThietBi thietbi = new ThietBi();
+        rs.next();
+        thietbi.setIdThietBi(rs.getString("idThietBi"));
+        thietbi.setTenThietBi(rs.getString("tenThietBi"));
+        thietbi.setSoLuong(rs.getInt("soLuong"));
+        thietbi.setTinhTrang(rs.getInt("tinhTrang"));
+        thietbi.setHinhAnh(rs.getString("hinhAnh"));
+        thietbi.setGiaThietBi(rs.getFloat("giaThietBi"));
+        return thietbi;
+    }
 }

@@ -55,7 +55,7 @@
                             %>
                         </datalist>
                     </div>
-                    <div class="more_info_box">
+                    <div class="more_info_box" id="more_info_box">
                         <div class="infor_image">
                             <img src="${pageContext.request.contextPath}/image/${ttld.getThietBi().getHinhAnh()}">
                         </div>
@@ -202,4 +202,19 @@ a{
         text-align: center;
     }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+    document.getElementById("tenthietbi").onchange  =()=>{
+        $.ajax({
+            type: "GET",
+            url: "/WebLapDatSuaChua/ajaxLoadThietBi",
+            data: {
+                idThietBi:document.getElementById("tenthietbi").value
+            },
+            success: function (data) {
+                document.getElementById("more_info_box").innerHTML=data;
+            }
+        });
+    };
+</script>
 </html>

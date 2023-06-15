@@ -30,6 +30,7 @@ public class TaoTTLD extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         ThongTinLapDat newttld = new ThongTinLapDat();
         if (req.getParameter("tenthietbi").equals("") || req.getParameter("gialapdat").equals("") || req.getParameter("motacongviec").equals("")){
             req.setAttribute("error","Nhập đầy đủ thông tin");
