@@ -16,7 +16,7 @@
 <body>
     <div class="conter">
         <h1>Login</h1>
-        <form action="${pageContext.request.contextPath}/login" method="post">
+        <form action="${pageContext.request.contextPath}/loginacc" method="post">
             <div class="txt_field">
                 <input type="text" name="userName" required value="${user.getTenTaiKhoan()}">
                 <span></span>

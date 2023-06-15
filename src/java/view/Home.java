@@ -20,11 +20,11 @@ import model.TaiKhoan;
  *
  * @author ADMIN
  */
-@WebServlet(urlPatterns = {"/listservice"})
-public class DanhSachTTLD extends HttpServlet{
+@WebServlet(urlPatterns = {"/homepage"})
+public class Home extends HttpServlet{
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {      
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         TaiKhoan loginedUser = MyUtils.getLoginedUser(session);
         if (loginedUser == null) {
@@ -32,8 +32,8 @@ public class DanhSachTTLD extends HttpServlet{
             return;
         }
         req.setAttribute("user", loginedUser);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/danhsachTTLD.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/home.jsp");
         dispatcher.forward(req, resp);
     }
-
+    
 }

@@ -5,10 +5,9 @@
  */
 package view;
 
-import connect.SQLServerConnUtils_JTDS;
 import controller.DBUtils;
+import controller.MyUtils;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.LichSuaChua;
+import javax.servlet.http.HttpSession;
+import model.TaiKhoan;
 import model.ThietBi;
 import model.ThongTinLapDat;
 
@@ -29,6 +29,14 @@ public class CapNhatTTLD extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        TaiKhoan loginedUser = MyUtils.getLoginedUser(session);
+        if (loginedUser == null) {
+            resp.sendRedirect(req.getContextPath() + "/loginacc");
+            return;
+        }
+        req.setAttribute("user", loginedUser);
+        
         String idttld = req.getParameter("idttld");
         ThongTinLapDat ttld = new ThongTinLapDat();
         try {
@@ -56,7 +64,7 @@ public class CapNhatTTLD extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         String action = req.getParameter("actionbt");
-        String idttld = req.getParameter("idttkd");
+        String idttld = req.getParameter("idttld");
         // cập nhật
         if (action.length()==8){
             ThongTinLapDat updatettld = new ThongTinLapDat();

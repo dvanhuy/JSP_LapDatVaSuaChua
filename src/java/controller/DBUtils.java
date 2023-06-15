@@ -11,10 +11,38 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import model.LichSuaChua;
+import model.TaiKhoan;
 import model.ThietBi;
 import model.ThongTinLapDat;
 
 public class DBUtils {
+    
+    public static TaiKhoan findTaiKhoan(String username,String password) throws SQLException{
+        Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
+        String sql = "select * " +
+                    " from TaiKhoan " +
+                    " where tenTaiKhoan = ? and matKhau= ?";
+        System.out.println(sql);
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, username);
+        pstm.setString(2, password);
+        ResultSet rs = pstm.executeQuery();
+        if (rs.next()) {
+            TaiKhoan tk = new TaiKhoan();
+            tk.setMaDinhDanh(rs.getString("maDinhDanh"));
+            tk.setHoTen(rs.getString("hoTen"));
+            tk.setTenTaiKhoan(rs.getString("tenTaiKhoan"));
+            tk.setMatKhau(rs.getString("matKhau"));
+            tk.setSoDienThoai(rs.getString("soDienThoai"));
+            tk.setGmail(rs.getString("gmail"));
+            tk.setNgaySinh(rs.getString("ngaySinh"));
+            tk.setDiaChi(rs.getString("diaChi"));
+            tk.setLoaiTaiKhoan(rs.getString("loaiTaiKhoan"));
+            return tk;
+        }
+        return null;
+    }
+    
     public static List<LichSuaChua> getAllLichSuaChua() throws SQLException{
         Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
         String sql = "select *\n" +
@@ -181,7 +209,6 @@ public class DBUtils {
     
     public static void updateTTLD(ThongTinLapDat ttld) throws SQLException, ParseException {
         Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
-//        String timebook = ttld.getThoiGianDatTruoc().replaceAll("T", " ");
         String sql = "update ThongTinLapDat "
                 + "set giaLapDat = "+ttld.getGiaLapDat()+",moTaCongViec = N'"+ttld.getMoTaCongViec()+"' "
             + " where idTTLapDat='"+ttld.getIdTTLapDat()+"'";
@@ -192,6 +219,7 @@ public class DBUtils {
      public static void deleteTTLD(String idttld) throws SQLException {
         Connection conn = SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
         String sql = "Delete ThongTinLapDat where idTTLapDat='"+idttld+"'";
+         System.out.println(sql);
         Statement stmt = conn.createStatement();
         stmt.execute(sql);
     }
